@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { useDeriveContext } from "../hooks/useDeriveContext";
 import Childs from "./Childs";
@@ -7,8 +8,9 @@ const url = "https://prototype.sbulltech.com/api/derivatives";
 
 export default function Derivative() {
   const [derivatives, setDerivatives] = useState([]);
-  const { token } = useDeriveContext();
+  // const { token } = useDeriveContext();
   const [error, setError] = useState(null);
+  const token = useSelector((state)=> state.token.value)
 
   useEffect(() => {
     fetch(`${url}/${token}`)
